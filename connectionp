@@ -1,0 +1,10 @@
+<?php 
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$connect_mysql = mysql_connect($servername,$username,$password)
+	or die ("Connection failed".mysql_error());
+	
+	mysql_select_db("solutions",$connect_mysql);
+	
+?>
