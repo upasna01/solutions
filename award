@@ -1,0 +1,35 @@
+<?php
+	include 'connectionp.php';
+	
+	echo "<h2>Award File</h2>";  
+	echo "<table border='1'>";  
+	echo "<tr>";  
+	echo "<td width='100' align='center'>Contract Name</td>
+	<td width='100' align='center'>Contract Date</td>
+	<td width='100' align='center'>Completion Date</td>
+	<td width='100' align='center'>Awardee</td>
+	<td width='100' align='center'>Awardee Location </td> 
+	<td width='100' align='center'>Amount</td>";  
+	echo "</tr>";  
+	$sql = mysql_query("SELECT * FROM awardfile");  
+	if (!$sql)
+	{
+		echo 'error occured'.mysql_error();
+	}
+	else
+	{
+		while($row=mysql_fetch_array($sql))  
+		{  
+		echo "<tr>";  
+		echo "<td align='center' width='100'>" . $row['contractName'] . "</td>";  
+		echo "<td align='center' width='100'>" . $row['contractDate'] . "</td>";  
+		echo "<td align='center' width='100'>" . $row['completionDate'] . "</td>";  
+		echo "<td align='center' width='100'>" . $row['awardee'] . "</td>";  
+		echo "<td align='center' width='100'>" . $row['awardeeLocation'] . "</td>";  
+		echo "<td align='center' width='100'>" . $row['Amount'] . "</td>";  
+		echo "</tr>";  
+		}  
+	}
+	echo "</table>";   	
+
+?>
