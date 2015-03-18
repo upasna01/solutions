@@ -1,0 +1,60 @@
+<?php
+	include 'connectionp.php';
+	echo "<h2>Final </h2>";  
+	echo "<table border='1'>";  
+	echo "<tr>";  
+	echo "<td width='100' align='center'>Contract Name</td>
+	<td width='100' align='center'>status </td>
+	<td width='100' align='center'>Bid Purchase Deadline</td>
+	<td width='100' align='center'>Bid Submission Deadline  </td> 
+	<td width='100' align='center'>Bid Opening Date  </td> 
+	<td width='100' align='center'>Tender Id  </td> 
+	<td width='100' align='center'>Publication Date  </td> 
+	<td width='100' align='center'>Published In </td> 
+	<td width='100' align='center'>Contract Date </td> 
+	<td width='100' align='center'>Completion Date  </td> 
+	<td width='100' align='center'>Awardee  </td> 
+	<td width='100' align='center'>Awardee Location </td> 
+	<td width='100' align='center'>Amount</td>";  
+	echo "</tr>";  
+	$sql= mysql_query("SELECT * FROM contractfile,awardfile WHERE contractfile.contractname=awardfile.contractName");
+	if (!$sql)
+	{
+		echo 'error occured'.mysql_error();
+	}
+	else
+	{
+	while($row=mysql_fetch_array($sql))  
+		{  
+			echo "<tr>";  
+			echo "<td align='center' width='100'>" . $row['contractname'] . "</td>";
+			echo "<td align='center' width='100'>" . $row['status'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidPurchaseDeadline'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidSubmissionDeadline'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidOpeningDate'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['tenderid'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['publicationDate'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['publishedIn'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['contractDate'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['completionDate'] . "</td>"; 
+			echo "<td align='center' width='100'>" . $row['awardee'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['awardeeLocation'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['Amount'] . "</td>";  
+			echo "</tr>";  
+			
+			
+		}
+	}
+	echo "</table>";
+		
+	$sum=0;
+	$sql0=mysql_query("SELECT Amount FROM awardfile UNION SELECT status FROM contractfile WHERE status='Current' ");
+		while($row1=mysql_fetch_assoc($sql0)) 
+		{	
+			$sum += $row1['Amount'];
+					
+		}echo "The total amount of currently running awarded contract is-".$sum;
+	
+
+	
+?>
