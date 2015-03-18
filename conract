@@ -1,0 +1,41 @@
+<?php
+	include 'connectionp.php';
+	
+	echo "<h2>Contract File</h2>";  
+	echo "<table border='1'>";  
+	echo "<tr>";  
+	echo "<td width='100' align='center'>Contract Name</td>
+	<td width='100' align='center'>status </td>
+	<td width='100' align='center'>bidPurchaseDeadline</td>
+	<td width='100' align='center'>Bid Submission Deadline  </td> 
+	<td width='100' align='center'>Bid Opening Date  </td> 
+	<td width='100' align='center'>Tenderid  </td> 
+	<td width='100' align='center'>Publication Date  </td> 
+	<td width='100' align='center'>Published In </td> ";  
+	echo "</tr>";  
+	$sql = mysql_query("SELECT * FROM contractfile");  
+	if (!$sql)
+	{
+		echo 'error occured'.mysql_error();
+	}
+	else
+	{
+		
+	while($row=mysql_fetch_array($sql))  
+		{  
+			
+			echo "<tr>";  
+			echo "<td align='center' width='100'>" . $row['contractname'] . "</td>";
+			echo "<td align='center' width='100'>" . $row['status'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidPurchaseDeadline'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidSubmissionDeadline'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['bidOpeningDate'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['tenderid'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['publicationDate'] . "</td>";  
+			echo "<td align='center' width='100'>" . $row['publishedIn'] . "</td>";  
+			echo "</tr>";  
+		}  
+	}
+	echo "</table>";   	
+	
+?>
